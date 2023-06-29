@@ -1,52 +1,14 @@
-// const person = {
-//   name: "maximilian",
-//   age: 30,
-// };
+// Union types <type> | <type>
+function combine(input1: number | string, input2: number | string) {
+  let result: number | string;
 
-// console.log(person.nickname); // this causes an error because property 'nickname' doesn't exist in this object.
-
-// // explicitely assign types
-// const person: {
-//   name: string;
-//   age: number;
-// } = {
-//   name: "maximilian",
-//   age: 30,
-// };
-
-// console.log(person.name);
-
-// // Array types
-// const person = {
-//   name: "maximilian",
-//   age: 30,
-//   hobbies: ["Sports", "Cooking"],
-// };
-
-// Tuple type
-// const person: {
-//   name: string;
-//   age: number;
-//   hobbies: string[];
-//   role: [number, string]; // this enforces length and types.
-// } = {
-//   name: "maximilian",
-//   age: 30,
-//   hobbies: ["Sports", "Cooking"],
-//   role: [2, "author"],
-// };
-
-// Enum type
-
-enum Role {
-  ADMIN,
-  READ_ONLY,
-  AUTHOR,
+  if (typeof input1 === "number" && typeof input2 === "number") {
+    result = input1 + input2;
+  } else {
+    result = input1.toString() + input2.toString();
+  }
+  return result;
 }
 
-const person = {
-  name: "maximilian",
-  age: 30,
-  hobbies: ["Sports", "Cooking"],
-  role: Role.ADMIN,
-};
+console.log(combine("Max", "Anna"));
+console.log(combine(2, 4));
