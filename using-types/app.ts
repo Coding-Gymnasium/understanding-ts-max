@@ -1,16 +1,17 @@
-function add(n1: number, n2: number) {
-  console.log(typeof n1);
-  return n1 + n2;
-}
+// const person = {
+//   name: "maximilian",
+//   age: 30,
+// };
 
-function trueOrFalse(bool: boolean) {
-  if (bool) {
-    console.log("It's true");
-  } else {
-    console.log("It's false");
-  }
-}
-const results = add(1, 2);
-console.log(results);
-trueOrFalse(true)
-trueOrFalse(false)
+// console.log(person.nickname); // this causes an error because property 'nickname' doesn't exist in this object.
+
+// explicitely assign types
+const person: {
+  name: string;
+  age: number;
+} = {
+  name: "maximilian",
+  age: 30,
+};
+
+console.log(person.name); // this causes an error because property 'nickname' doesn't exist in this object.
