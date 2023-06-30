@@ -1,27 +1,19 @@
-// function add(n1: number, n2: number): number { // we can specify the return type but it's better to use the inferred in most cases
+let userInput: unknown;
+let userName: string;
 
-function add(n1: number, n2: number) {
-  return n1 + n2;
+userInput = 5;
+userInput = "Max";
+
+// without this check I would get an error because I can't gurantee userInput would always be a string.
+if (typeof userInput === "string") {
+  userName = userInput;
 }
 
-function printResult(num: number): void {
-  // here we could define the return to :void but it's not recommended
-  console.log("Result: " + num);
+// Never type
+
+// the function below doesn't return anything. It's called type 'never'
+function generateError(message: string, code: number): never {
+  throw { message: message, errorCode: code }; 
 }
 
-printResult(add(5, 12));
-
-// Functions and types
-
-let combinedValues: (a: number, b: number) => number;
-combinedValues = add;
-combinedValues(8, 8);
-
-function addAndHandle(n1: number, n2: number, cb: (num: number) => void) {
-  const result = n1 + n2;
-  cb(result);
-}
-
-addAndHandle(10, 20, (result) => {
-  console.log(result);
-});
+generateError("An error occurred!", 500);
