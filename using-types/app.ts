@@ -9,3 +9,9 @@ function printResult(num: number): void { // here we could define the return to 
 }
 
 printResult(add(5, 12));
+
+// Functions and types
+
+let combinedValues: (a: number, b: number) => number;
+combinedValues = add;
+combinedValues(8,8);
