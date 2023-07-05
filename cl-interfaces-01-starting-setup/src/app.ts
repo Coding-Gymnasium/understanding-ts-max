@@ -18,10 +18,47 @@ class Department {
   }
 }
 
+class ITDepartment extends Department {
+  admins: string[];
+
+  constructor(id: string, admins: string[]) {
+    super(id, "IT");
+    this.admins = admins;
+  }
+}
+
+class AccountingDepartment extends Department {
+  constructor(id: string, private reports: string[]) {
+    super(id, "Accounting");
+  }
+
+  addReport(text: string) {
+    this.reports.push(text);
+  }
+
+  printReports() {
+    console.log(this.reports);
+  }
+}
+
 const sales = new Department("1", "Sales");
+
 console.log(sales);
 console.log(sales.describe());
 
 sales.addEmployee("Max");
 sales.addEmployee("Manu");
 sales.printEmployeeInformation();
+
+const itDept = new ITDepartment("2", ["Nico"]);
+itDept.addEmployee("Nico");
+itDept.addEmployee("Liz");
+itDept.printEmployeeInformation();
+console.log(itDept.name);
+console.log(itDept.admins);
+console.log(itDept);
+
+const accountingDept = new AccountingDepartment("3", []);
+accountingDept.addReport('Something went wrong');
+accountingDept.printReports();
+console.log(accountingDept);
