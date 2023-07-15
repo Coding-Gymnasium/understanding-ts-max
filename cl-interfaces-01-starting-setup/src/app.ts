@@ -10,29 +10,40 @@ add = (n1: number, n2: number) => {
 };
 
 interface Named {
-  readonly name: string;
+  readonly name?: string;
+  outputName?: string; // question mark indecates this property is optional
 }
 
 interface Greetable extends Named {
-  greet(phrase: string): void;
+  greet(phrase?: string): void;
 }
 
 class Person implements Greetable {
-  name: string;
+  name?: string;
   age = 30;
 
-  constructor(n: string) {
-    this.name = n;
+  constructor(n?: string) {
+    if (n) {
+      this.name = n;
+    }
   }
 
-  greet(phrase: string): void {
-    console.log(phrase + " " + this.name);
+  greet(phrase?: string): void {
+    if (this.name) {
+      console.log(phrase + " " + this.name);
+    } else {
+      console.log("Hi!");
+    }
   }
 }
 
 let user1: Greetable;
+let user3: Greetable;
 
-user1 = new Person("Nico");
+user1 = new Person("Matt");
 // user2 = new Person("Nico"); // cannot reassign because name it's set to readonly in the interface.
+user3 = new Person();
 
 user1.greet("Hi there, I am");
+console.log("Console log: ", user3);
+user3.greet();
