@@ -105,3 +105,7 @@ function moveAnimal(animal: Animal) {
 }
 
 moveAnimal({ type: "bird", flyingSpeed: 10 });
+
+// const paragraph = document.querySelector("p");
+const paragraph = document.getElementById("message-outpout");
+const userInputElement = document.getElementById("user-input");
