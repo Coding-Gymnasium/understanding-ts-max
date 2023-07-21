@@ -107,5 +107,19 @@ function moveAnimal(animal: Animal) {
 moveAnimal({ type: "bird", flyingSpeed: 10 });
 
 // const paragraph = document.querySelector("p");
-const paragraph = document.getElementById("message-outpout");
-const userInputElement = document.getElementById("user-input");
+const paragraph = document.getElementById("message-output");
+
+// const userInputElement = <HTMLInputElement>document.getElementById("user-input")!;
+// exclamation mark accounts for possible nil and ensure it will never yield nil.
+// type between brackets clashes with jsx. Don't use this syntax in React.
+
+const userInputElement = document.getElementById(
+  "user-input"
+)! as HTMLInputElement;
+// Syntax with the type at the end works better with jsx
+
+userInputElement.value = "Hi there!";
+
+if (paragraph) {
+  (paragraph as HTMLElement).textContent = "Howdy!";
+}
