@@ -123,3 +123,15 @@ userInputElement.value = "Hi there!";
 if (paragraph) {
   (paragraph as HTMLElement).textContent = "Howdy!";
 }
+
+// Index Properties
+// flexible error container
+
+interface ErrorContainer {
+  [prop: string]: string;
+}
+
+const errorBag: ErrorContainer = {
+  email: "Not a valid email",
+  username: "Must start with a capitalized character",
+};
