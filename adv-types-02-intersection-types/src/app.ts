@@ -25,6 +25,10 @@ type Numeric = number | boolean;
 
 type Universal = Combinable & Numeric;
 
+// Function Overload
+
+function add(a: number, b: number): number;
+function add(a: string, b: string): string;
 function add(a: Combinable, b: Combinable) {
   if (typeof a == "string" || typeof b === "string") {
     return a.toString() + b.toString();
@@ -32,106 +36,110 @@ function add(a: Combinable, b: Combinable) {
   return a + b;
 }
 
-type UnkownEmployee = Employee | Admin;
+const resultNum = add(1,5);
+const result = add("Max", " Schwarz") as string;
+result.split(" ");
 
-function printEmployeeInformation(emp: UnkownEmployee) {
-  console.log("Name: " + emp.name);
+// type UnkownEmployee = Employee | Admin;
 
-  if ("privileges" in emp) {
-    console.log("Privileges: " + emp.privileges);
-  }
+// function printEmployeeInformation(emp: UnkownEmployee) {
+//   console.log("Name: " + emp.name);
 
-  if ("startDate" in emp) {
-    console.log("Privileges: " + emp.startDate);
-  }
-}
+//   if ("privileges" in emp) {
+//     console.log("Privileges: " + emp.privileges);
+//   }
 
-printEmployeeInformation(e1);
-printEmployeeInformation({ name: "Manu", startDate: new Date() });
+//   if ("startDate" in emp) {
+//     console.log("Privileges: " + emp.startDate);
+//   }
+// }
 
-class Car {
-  drive() {
-    console.log("Driving...");
-  }
-}
+// printEmployeeInformation(e1);
+// printEmployeeInformation({ name: "Manu", startDate: new Date() });
 
-class Truck {
-  drive() {
-    console.log("Driving a truck ...");
-  }
+// class Car {
+//   drive() {
+//     console.log("Driving...");
+//   }
+// }
 
-  loadCargo(amount: number) {
-    console.log("Loading cargo ..." + amount);
-  }
-}
+// class Truck {
+//   drive() {
+//     console.log("Driving a truck ...");
+//   }
 
-type Vehicle = Car | Truck;
+//   loadCargo(amount: number) {
+//     console.log("Loading cargo ..." + amount);
+//   }
+// }
 
-const v1 = new Car();
-const v2 = new Truck();
+// type Vehicle = Car | Truck;
 
-function useVehicle(vehicle: Vehicle) {
-  vehicle.drive();
-  if (vehicle instanceof Truck) {
-    vehicle.loadCargo(1000);
-  }
-}
+// const v1 = new Car();
+// const v2 = new Truck();
 
-useVehicle(v1);
-useVehicle(v2);
+// function useVehicle(vehicle: Vehicle) {
+//   vehicle.drive();
+//   if (vehicle instanceof Truck) {
+//     vehicle.loadCargo(1000);
+//   }
+// }
 
-interface Bird {
-  type: "bird";
-  flyingSpeed: number;
-}
-interface Horse {
-  type: "horse";
-  runningSpeed: number;
-}
+// useVehicle(v1);
+// useVehicle(v2);
 
-type Animal = Bird | Horse;
+// interface Bird {
+//   type: "bird";
+//   flyingSpeed: number;
+// }
+// interface Horse {
+//   type: "horse";
+//   runningSpeed: number;
+// }
 
-function moveAnimal(animal: Animal) {
-  let speed;
-  switch (animal.type) {
-    case "bird":
-      speed = animal.flyingSpeed;
-      break;
-    case "horse":
-      speed = animal.runningSpeed;
-      break;
-  }
-  console.log(`${animal.type} moving at speed: ${speed}`);
-}
+// type Animal = Bird | Horse;
 
-moveAnimal({ type: "bird", flyingSpeed: 10 });
+// function moveAnimal(animal: Animal) {
+//   let speed;
+//   switch (animal.type) {
+//     case "bird":
+//       speed = animal.flyingSpeed;
+//       break;
+//     case "horse":
+//       speed = animal.runningSpeed;
+//       break;
+//   }
+//   console.log(`${animal.type} moving at speed: ${speed}`);
+// }
 
-// const paragraph = document.querySelector("p");
-const paragraph = document.getElementById("message-output");
+// moveAnimal({ type: "bird", flyingSpeed: 10 });
 
-// const userInputElement = <HTMLInputElement>document.getElementById("user-input")!;
-// exclamation mark accounts for possible nil and ensure it will never yield nil.
-// type between brackets clashes with jsx. Don't use this syntax in React.
+// // const paragraph = document.querySelector("p");
+// const paragraph = document.getElementById("message-output");
 
-const userInputElement = document.getElementById(
-  "user-input"
-)! as HTMLInputElement;
-// Syntax with the type at the end works better with jsx
+// // const userInputElement = <HTMLInputElement>document.getElementById("user-input")!;
+// // exclamation mark accounts for possible nil and ensure it will never yield nil.
+// // type between brackets clashes with jsx. Don't use this syntax in React.
 
-userInputElement.value = "Hi there!";
+// const userInputElement = document.getElementById(
+//   "user-input"
+// )! as HTMLInputElement;
+// // Syntax with the type at the end works better with jsx
 
-if (paragraph) {
-  (paragraph as HTMLElement).textContent = "Howdy!";
-}
+// userInputElement.value = "Hi there!";
 
-// Index Properties
-// flexible error container
+// if (paragraph) {
+//   (paragraph as HTMLElement).textContent = "Howdy!";
+// }
 
-interface ErrorContainer {
-  [prop: string]: string;
-}
+// // Index Properties
+// // flexible error container
 
-const errorBag: ErrorContainer = {
-  email: "Not a valid email",
-  username: "Must start with a capitalized character",
-};
+// interface ErrorContainer {
+//   [prop: string]: string;
+// }
+
+// const errorBag: ErrorContainer = {
+//   email: "Not a valid email",
+//   username: "Must start with a capitalized character",
+// };
