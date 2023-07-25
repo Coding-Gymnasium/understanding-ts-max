@@ -49,6 +49,17 @@ const fetchdUserData = {
 
 console.log(fetchdUserData?.job.title);
 
+// Nullish Coalescing
+
+const userInput = '';
+// const userInput = undefined;
+// const userInput = null;
+
+// const storedData = userInput || 'Default';
+const storedData = userInput ?? 'Default';
+
+console.log(storedData);
+
 // type UnkownEmployee = Employee | Admin;
 
 // function printEmployeeInformation(emp: UnkownEmployee) {
