@@ -42,3 +42,33 @@ console.log(numberStorage.getItems());
 
 // objectStorage.removeItem({ name: "Liz" });
 // console.log(objectStorage.getItems());
+
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+
+// function createCourseGoal(
+//   title: string,
+//   description: string,
+//   date: Date
+// ): CourseGoal {
+//   return { title: title, description: description, completeUntil: date };
+// }
+
+function createCourseGoal(
+  title: string,
+  description: string,
+  date: Date
+): CourseGoal {
+  let courseGoal: Partial<CourseGoal> = {};
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = date;
+  return courseGoal as CourseGoal;
+}
+
+const names: Readonly<string[]> = ["Max", "Anna"];
+// names.push("Manu"); // doesn't work because we set names as read ony.
+
