@@ -1,10 +1,18 @@
 // decorators are capitalized by convention
-function Logger(constructor: Function) {
-  console.log("Logging...");
-  console.log(constructor);
+// function Logger(constructor: Function) {
+//   console.log("Logging...");
+//   console.log(constructor);
+// }
+
+// decorator factory
+function Logger(logString: string) {
+  return function (constructor: Function) {
+    console.log(logString);
+    console.log(constructor);
+  };
 }
 
-@Logger
+@Logger("LOGGING - PERSON")
 class Person {
   name = "Max";
 
