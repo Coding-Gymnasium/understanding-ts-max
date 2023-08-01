@@ -13,10 +13,12 @@ function Logger(logString: string) {
 }
 
 function withTemplate(template: string, hookId: string) {
-  return function (_constructor: Function) {
+  return function (constructor: any) {
     const hookEl = document.getElementById(hookId);
+    const p = new constructor();
     if (hookEl) {
       hookEl.innerHTML = template;
+      hookEl.querySelector("h1")!.textContent = p.name;
     }
   };
 }
