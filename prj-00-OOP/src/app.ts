@@ -119,7 +119,7 @@ function autobind(
 
 // Component Base Class
 
-class Component<T extends HTMLElement, U extends HTMLElement> {
+abstract class Component<T extends HTMLElement, U extends HTMLElement> {
   templateElement: HTMLTemplateElement;
   hostElement: T;
   element: U;
@@ -127,6 +127,7 @@ class Component<T extends HTMLElement, U extends HTMLElement> {
   constructor(
     templateId: string,
     hostElementId: string,
+    instertAtStart: boolean,
     newElementId?: string
   ) {
     this.templateElement = document.getElementById(
@@ -144,12 +145,18 @@ class Component<T extends HTMLElement, U extends HTMLElement> {
       this.element.id = newElementId;
     }
 
-    this.atttach();
+    this.atttach(instertAtStart);
   }
 
-  private atttach() {
-    this.hostElement.insertAdjacentElement("beforeend", this.element);
+  private atttach(instertAtBeginning: boolean) {
+    this.hostElement.insertAdjacentElement(
+      instertAtBeginning ? "afterbegin" : "beforeend",
+      this.element
+    );
   }
+
+  abstract configure(): void;
+  abstract renderContent(): void;
 }
 
 // ProjectList Class
