@@ -1,45 +1,40 @@
-namespace App {
-  // Component Base Class
-  export abstract class Component<
-    T extends HTMLElement,
-    U extends HTMLElement
-  > {
-    templateElement: HTMLTemplateElement;
-    hostElement: T;
-    element: U;
+// Component Base Class
+export abstract class Component<T extends HTMLElement, U extends HTMLElement> {
+  templateElement: HTMLTemplateElement;
+  hostElement: T;
+  element: U;
 
-    constructor(
-      templateId: string,
-      hostElementId: string,
-      instertAtStart: boolean,
-      newElementId?: string
-    ) {
-      this.templateElement = document.getElementById(
-        templateId
-      )! as HTMLTemplateElement;
+  constructor(
+    templateId: string,
+    hostElementId: string,
+    instertAtStart: boolean,
+    newElementId?: string
+  ) {
+    this.templateElement = document.getElementById(
+      templateId
+    )! as HTMLTemplateElement;
 
-      this.hostElement = document.getElementById(hostElementId)! as T;
+    this.hostElement = document.getElementById(hostElementId)! as T;
 
-      const importedNode = document.importNode(
-        this.templateElement.content,
-        true
-      );
-      this.element = importedNode.firstElementChild as U;
-      if (newElementId) {
-        this.element.id = newElementId;
-      }
-
-      this.atttach(instertAtStart);
+    const importedNode = document.importNode(
+      this.templateElement.content,
+      true
+    );
+    this.element = importedNode.firstElementChild as U;
+    if (newElementId) {
+      this.element.id = newElementId;
     }
 
-    private atttach(instertAtBeginning: boolean) {
-      this.hostElement.insertAdjacentElement(
-        instertAtBeginning ? "afterbegin" : "beforeend",
-        this.element
-      );
-    }
-
-    abstract configure(): void;
-    abstract renderContent(): void;
+    this.atttach(instertAtStart);
   }
+
+  private atttach(instertAtBeginning: boolean) {
+    this.hostElement.insertAdjacentElement(
+      instertAtBeginning ? "afterbegin" : "beforeend",
+      this.element
+    );
+  }
+
+  abstract configure(): void;
+  abstract renderContent(): void;
 }
