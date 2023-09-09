@@ -6,7 +6,7 @@ module.exports = {
   devServer: {
     static: [
       {
-        directory: path.join(__dirname),
+        directory: path.join(__dirname, "/"),
       },
     ],
   },
@@ -19,7 +19,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts?$/,
+        test: /\.ts$/,
         use: "ts-loader",
         exclude: /node_modules/,
       },
