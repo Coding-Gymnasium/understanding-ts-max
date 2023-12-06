@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsPositive } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsPositive } from "class-validator";
 
 export class Product {
   @IsNotEmpty()
@@ -16,3 +16,4 @@ export class Product {
     return [this.title, `$${this.price}`];
   }
 }
+
