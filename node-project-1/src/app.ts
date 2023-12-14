@@ -1,10 +1,17 @@
 import express, { Request, Response, NextFunction } from "express";
+import { json } from "body-parser";
 import todoRoutes from "./routes/todos";
 
 const app = express();
 
+app.use(json());
+
 //port
 const port = 3000;
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 
 app.use("/todos", todoRoutes);
 
